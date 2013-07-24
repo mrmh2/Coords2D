@@ -3,7 +3,11 @@
 import math
 
 class Coords2D():
-    def __init__(self, (x, y)):
+    def __init__(self, a1, a2=None):
+        if a2 is None:
+            x, y = a1
+        else:
+            x, y = a1, a2
         self.x = int(x)
         self.y = int(y)
 
