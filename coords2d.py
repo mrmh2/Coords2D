@@ -8,8 +8,9 @@ class Coords2D():
             x, y = a1
         else:
             x, y = a1, a2
-        self.x = int(x)
-        self.y = int(y)
+
+        self.x = x
+        self.y = y
 
     def dist(self, other):
         return abs(self - other)
@@ -24,7 +25,7 @@ class Coords2D():
             return 1
 
     def __repr__(self):
-        return "<Coords2D>: %d, %d" % (self.x, self.y)
+        return "<Coords2D>: %s, %s" % (repr(self.x), repr(self.y))
 
     def __sub__(self, other):
         return Coords2D((self.x - other.x, self.y - other.y))
@@ -39,7 +40,10 @@ class Coords2D():
             return Coords2D((self.x * other, self.y * other))
 
     def __div__(self, other):
-        return Coords2D((self.x / other, self.y / other))
+        if isinstance(other, float):
+            return Coords2D((float(self.x) / other, float(self.y) / other))
+        else:
+            return Coords2D((self.x / other, self.y / other))
 
     def __iter__(self):
         return iter((self.x, self.y))
